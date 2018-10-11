@@ -1,1 +1,7 @@
-<%= @hotels %>
+<% @hotels.each do |h| %>
+<%= h["hotel"][0]["hotelBasicInfo"]["hotelName"] %>
+<%= h["hotel"][0]["hotelBasicInfo"]["hotelMinCharge"] %>
+<br>
+<% end %>
+
+
