@@ -12,4 +12,11 @@ class RakutenHotelsController < ApplicationController
     result = JSON.parse(resp.body)
     @hotels = result["hotels"]
   end
+
+
+
+  private
+  def hotel_params
+
+  end
 end
