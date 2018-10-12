@@ -1,0 +1,16 @@
+
+
+
+<% @hotels.each do |h| %>
+
+
+
+  <h2><%= link_to h["hotel"][0]["hotelBasicInfo"]["hotelName"], hotel_path(h["hotel"][0]["hotelBasicInfo"]["hotelNo"]) %></h2>
+
+    <h3> <%= h["hotel"][0]["hotelBasicInfo"]["hotelMinCharge"] %> yen</h3>
+    <%= image_tag h["hotel"][0]["hotelBasicInfo"]["hotelThumbnailUrl"] %>
+
+  <br>
+<% end %>
+
+
