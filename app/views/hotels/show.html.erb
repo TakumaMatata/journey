@@ -1,3 +1,11 @@
 <%#= @hotel["hotel"][0]["hotelBasicInfo"]["hotelName"] %>
-<h1>hey</h1>
-<%= @hotel_detail["hotel"][0]["hotelBasicInfo"]["hotelName"] %>
+<%= image_tag @hotel_detail["hotel"][0]["hotelBasicInfo"]["hotelImageUrl"] %>
+<h1><%= @hotel_detail["hotel"][0]["hotelBasicInfo"]["hotelName"] %></h1>
+<h2><%= @hotel_detail["hotel"][0]["hotelBasicInfo"]["hotelSpecial"] %></h2>
+<h2><%= @hotel_detail["hotel"][0]["hotelBasicInfo"]["hotelMinCharge"] %>円</h2>
+<h2><%= @hotel_detail["hotel"][0]["hotelBasicInfo"]["access"] %></h2>
+<h2>駐車場<%= @hotel_detail["hotel"][0]["hotelBasicInfo"]["parkingInformation"] %></h2>
+<h2>最寄駅：<%= @hotel_detail["hotel"][0]["hotelBasicInfo"]["nearestStation"] %></h2>
+<h2>評価<%= @hotel_detail["hotel"][0]["hotelBasicInfo"]["reviewAverage"] %></h2>
+
+
