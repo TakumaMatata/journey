@@ -4,18 +4,48 @@ class HotelsController < ApplicationController
   require 'json'
 
   def search
-    uri = URI('https://app.rakuten.co.jp/services/api/Travel/VacantHotelSearch/20170426?applicationId=1089373237716979823&format=json&largeClassCode=japan&middleClassCode=akita&smallClassCode=tazawa&checkinDate=2018-10-15&checkoutDate=2018-10-16&adultNum=2')
-    resp = Net::HTTP.get_response(uri)
-    #http.use_ssl = true
-    #req = Net::HTTP::Get.new(uri.path)
-    #resp = http.request(req)
-    result = JSON.parse(resp.body)
-    @hotels = result["hotels"]
+
+    if params.has_key?(:num_of_ppl)
+
+      num_of_ppl = params[:num_of_ppl]
+      check_in_date = params[:check_in]
+      check_out_date = '2018-10-18'
+      # latitude = params[:latitude]
+      # longitude = params[:longitude]
+
+      uri = URI('https://app.rakuten.co.jp/services/api/Travel/VacantHotelSearch/20170426')
+      data = {
+        :applicationId => '1089373237716979823',
+        :format => 'json',
+        :latitude => '128440.51',
+        :longitude => '503172.21',
+        :searchRadius => '1',
+        :checkinDate => check_in_date,
+        :checkoutDate => check_out_date,
+        :adultNum => num_of_ppl
+      }
 
 
-      # @hotel_id = @hotels.each do |h|
-      #   h["hotel"][0]["hotelBasicInfo"]["hotelNum"]
-      # end
+      uri.query = URI.encode_www_form(data)
+
+      puts uri
+
+      resp = Net::HTTP.get_response(uri)
+      #http.use_ssl = true
+      #req = Net::HTTP::Get.new(uri.path)
+      #resp = http.request(req)
+      result = JSON.parse(resp.body)
+
+      puts result
+
+      @hotels = result["hotels"]
+
+    else
+      num_of_ppl = 1
+      check_in_date = '2018-10-15'
+      check_out_date = '2018-10-18'
+      @hotels = []
+    end
   end
 
   def show
@@ -38,9 +68,7 @@ class HotelsController < ApplicationController
 
 
   private
-  # def hotel_params
-  #   params.require(:hotels).permit(:)
-
-  # end
-
+  def hotel_params
+    params.require(:hotel).permit(:location, :num_of_ppl, :check_in)
+  end
 end

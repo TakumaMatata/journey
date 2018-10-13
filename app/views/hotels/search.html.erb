@@ -1,4 +1,13 @@
 
+<%= form_tag("/hotels", method: "get") do %>
+  <%= label_tag(:num_of_ppl, "Number of people:") %>
+  <%= number_field_tag(:num_of_ppl) %>
+
+  <%= label_tag(:check_in, "Check in:") %>
+  <%= text_field_tag(:check_in) %>
+
+  <%= submit_tag("Search") %>
+<% end %>
 
 
 <% @hotels.each do |h| %>

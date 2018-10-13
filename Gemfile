@@ -9,6 +9,7 @@ gem 'rails', '~> 5.2.1'
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'sorcery'
+gem 'simple_form'
 gem 'puma', '~> 3.11'
 gem 'rakuten_web_service'
 # Use SCSS for stylesheets
