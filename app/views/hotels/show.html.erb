@@ -8,4 +8,8 @@
 <h2>最寄駅：<%= @hotel_detail["hotel"][0]["hotelBasicInfo"]["nearestStation"] %></h2>
 <h2>評価<%= @hotel_detail["hotel"][0]["hotelBasicInfo"]["reviewAverage"] %></h2>
 
-
+<% unless current_user.favorite.exists?(id: @hotel.id) %>
+  <%= link_to 'Add to favorites', user_favorite_path(hotel_id: @hotel), method: :post %>
+  <% else %>
+  <%= link_to 'Remove from favorites', user_favorite_path(@hotel), method: :delete %>
+<% end %>
