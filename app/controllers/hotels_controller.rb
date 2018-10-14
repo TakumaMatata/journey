@@ -53,9 +53,10 @@ puts result
   end
 
   def show
-    id = params[:id]
-    uri = URI('https://app.rakuten.co.jp/services/api/Travel/HotelDetailSearch/20170426?applicationId=1089373237716979823&format=json&hotelNo=' + id)
-    resp = Net::HTTP.get_response(uri)
+    @user_id = current_user.id
+    @hotel_id = params[:id]
+    @uri = URI('https://app.rakuten.co.jp/services/api/Travel/HotelDetailSearch/20170426?applicationId=1089373237716979823&format=json&hotelNo=' + @hotel_id)
+    resp = Net::HTTP.get_response(@uri)
     result = JSON.parse(resp.body)
     @hotel_detail = result["hotels"][0]
 

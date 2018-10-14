@@ -1,6 +1,14 @@
 <%#= @hotel["hotel"][0]["hotelBasicInfo"]["hotelName"] %>
 <%= image_tag @hotel_detail["hotel"][0]["hotelBasicInfo"]["hotelImageUrl"] %>
 <h1><%= @hotel_detail["hotel"][0]["hotelBasicInfo"]["hotelName"] %></h1>
+
+<% unless current_user.favorites.exists?(hotel_id: @hotel_id) %>
+  <h3> <%= link_to 'Add to favorites', user_favorites_path(:user_id => @user_id, :hotel_id => @hotel_id), method: :post %></h3>
+  <% else %>
+  <h3>---Already Favorited----</h3>
+  <%#= link_to 'Remove from favorites', user_favorite_path(:user_id => @user_id, :hotel_id => @hotel_id), method: :delete %>
+<% end %>
+
 <h2><%= @hotel_detail["hotel"][0]["hotelBasicInfo"]["hotelSpecial"] %></h2>
 <h2><%= @hotel_detail["hotel"][0]["hotelBasicInfo"]["hotelMinCharge"] %>円</h2>
 <h2><%= @hotel_detail["hotel"][0]["hotelBasicInfo"]["access"] %></h2>
@@ -8,8 +16,3 @@
 <h2>最寄駅：<%= @hotel_detail["hotel"][0]["hotelBasicInfo"]["nearestStation"] %></h2>
 <h2>評価<%= @hotel_detail["hotel"][0]["hotelBasicInfo"]["reviewAverage"] %></h2>
 
-<% unless current_user.favorite.exists?(id: @hotel.id) %>
-  <%= link_to 'Add to favorites', user_favorite_path(hotel_id: @hotel), method: :post %>
-  <% else %>
-  <%= link_to 'Remove from favorites', user_favorite_path(@hotel), method: :delete %>
-<% end %>

@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_13_131748) do
+ActiveRecord::Schema.define(version: 2018_10_14_142120) do
 
-  create_table "favorites", force: :cascade do |t|
+  create_table "favorites", id: false, force: :cascade do |t|
     t.string "favorite_hotels"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "hotel_id"
   end
 
   create_table "hotels", force: :cascade do |t|
