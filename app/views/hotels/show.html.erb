@@ -3,7 +3,7 @@
 <h1><%= @hotel_detail["hotel"][0]["hotelBasicInfo"]["hotelName"] %></h1>
 
 <% unless current_user.favorites.exists?(hotel_id: @hotel_id) %>
-  <h3> <%= link_to 'Add to favorites', user_favorites_path(:user_id => @user_id, :hotel_id => @hotel_id), method: :post %></h3>
+  <h3> <%= link_to '---Add to favorites---', user_favorites_path(:user_id => @user_id, :hotel_id => @hotel_id), method: :post %></h3>
   <% else %>
   <h3>---Already Favorited----</h3>
   <%#= link_to 'Remove from favorites', user_favorite_path(:user_id => @user_id, :hotel_id => @hotel_id), method: :delete %>
