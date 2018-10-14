@@ -1,4 +1,4 @@
-RakutenWebService.configuration do |c|
+RakutenWebService.configure do |c|
     # (Required) Appliction ID for your application.
 c.application_id = 1089373237716979823
 
