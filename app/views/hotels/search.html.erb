@@ -1,0 +1,26 @@
+
+<%= form_tag("/hotels", method: "get") do %>
+  <%= label_tag(:location, "location:") %>
+  <%= text_field_tag(:location) %>
+
+  <%= label_tag(:num_of_ppl, "Number of people:") %>
+  <%= number_field_tag(:num_of_ppl) %>
+
+  <%= label_tag(:check_in, "Check in:") %>
+  <%= text_field_tag(:check_in) %>
+
+  <%= label_tag(:check_out, "Check in:") %>
+  <%= text_field_tag(:check_out) %>
+
+  <%= submit_tag("Search") %>
+<% end %>
+
+
+<% @hotels.each do |h| %>
+  <h2><%= link_to h["hotel"][0]["hotelBasicInfo"]["hotelName"], hotel_path(h["hotel"][0]["hotelBasicInfo"]["hotelNo"]) %></h2>
+
+    <h3> <%= h["hotel"][0]["hotelBasicInfo"]["hotelMinCharge"] %> yen</h3>
+    <%= image_tag h["hotel"][0]["hotelBasicInfo"]["hotelThumbnailUrl"] %>
+<% end %>
+
+
